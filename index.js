@@ -5,7 +5,6 @@ const { DBConnection } = require("./database/db.js");
 const cookieParser = require("cookie-parser");
 const authRoutes = require('./routes/auth.js');
 const problemRoutes = require('./routes/problem.js')
-const auth = require("./middleware/auth.js");
 
 dotenv.config();
 
@@ -21,8 +20,8 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use('/',auth, authRoutes);
-app.use('/',auth,problemRoutes);
+app.use('/',authRoutes);
+app.use('/',problemRoutes);
 
 // Basic route for testing
 app.get('/', (req, res) => {
